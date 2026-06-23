@@ -20,4 +20,8 @@ real quick gang if you are committing to this repo please follow!
 | `IMPR` | Improvement to existing feature |
 | `MISC` | Anything else |
 
+After which, add a colon and then give a **1 sentence description** alongside it.
+Example:
+
+DOCS: Added detailed commit conventions.
 ---
