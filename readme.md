@@ -70,6 +70,4 @@ IMPR: Improved chart labels for better readability.
 * Write meaningful commit messages.
 * Discuss larger changes in an issue first.
 * Do not claim an issue unless you intend to work on it.
-* Open a pull request for review before merging changes.
-
 ---
