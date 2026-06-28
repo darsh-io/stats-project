@@ -27,7 +27,7 @@ This ensures every feature is reviewed before it enters the project. ✨
 
 ## 📝 Commit Convention
 
-All commits must follow this format:
+All commits **must** follow this format:
 
 ```text
 TAG: One-sentence description of the change.
