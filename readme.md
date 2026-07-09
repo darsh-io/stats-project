@@ -64,7 +64,7 @@ IMPR: Improved chart labels for better readability.
 
 ---
 
-## 🤝 Keep It Clean 
+## 🤝 Keep It Clean  
 
 * Keep commits focused on one clear change.
 * Write meaningful commit messages.
