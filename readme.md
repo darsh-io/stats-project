@@ -12,16 +12,16 @@ When someone has an idea for a feature:
 
 1. Create a **detailed issue** describing:
 
-   * The problem or goal
+   * The **problem** or **goal**
    * Proposed behaviour
-   * Possible implementation details
-   * Any screenshots, examples, or edge cases where useful
+   * Possible **implementation details**
+   * Any **screenshots**, **examples**, or **edge cases** where useful
 2. Discuss the idea through the issue comments.
-3. Agree on the final requirements before development begins.
+3. **Agree** on the final requirements before development begins.
 4. Once agreed, a contributor may add their name label to **claim** the issue.
 5. The contributor can then begin work and open a pull request when ready.
 
-This ensures every feature is reviewed before it enters the project. ✨
+This ensures **every** feature is reviewed before it enters the project. ✨
 
 ---
 
