@@ -118,7 +118,7 @@ class PortfolioBuilder:
         self.fetcher = fetcher
         self.investment_per_company = investment_per_company
 
-    def _build_sector_value(self, sector: str, tickers: List[str]) -> pd.Series:
+    def _build_sector_positions(self, sector: str, tickers: List[str]) -> pd.DataFrame:
         position_values: Dict[str, pd.Series] = {}
         for ticker in tickers:
             close = self.fetcher.get_close_series(ticker)
@@ -129,8 +129,8 @@ class PortfolioBuilder:
             position_values[ticker] = close * shares
 
         if not position_values:
-            logger.warning("Sector %s has no valid tickers; returning empty series", sector)
-            return pd.Series(dtype=float)
+            logger.warning("Sector %s has no valid tickers; returning empty frame", sector)
+            return pd.DataFrame()
 
         combined = pd.concat(position_values, axis=1)
 
@@ -149,14 +149,23 @@ class PortfolioBuilder:
                 sector, len(combined) - len(aligned), len(combined),
             )
 
-        return aligned.sum(axis=1)
+        return aligned
 
     def build(self, sectors: Dict[str, List[str]]) -> pd.DataFrame:
-        portfolio = pd.DataFrame({
-            sector: self._build_sector_value(sector, tickers)
-            for sector, tickers in sectors.items()
-        })
-        portfolio["Total Portfolio"] = portfolio.sum(axis=1)
+        ticker_frames = []
+        sector_totals = {}
+        for sector, tickers in sectors.items():
+            positions = self._build_sector_positions(sector, tickers)
+            if positions.empty:
+                sector_totals[sector] = pd.Series(dtype=float)
+                continue
+            ticker_frames.append(positions)
+            sector_totals[sector] = positions.sum(axis=1)
+
+        portfolio = pd.concat(ticker_frames, axis=1) if ticker_frames else pd.DataFrame()
+        for sector, totals in sector_totals.items():
+            portfolio[sector] = totals
+        portfolio["Total Portfolio"] = portfolio[list(sector_totals.keys())].sum(axis=1)
         return portfolio
 
 
